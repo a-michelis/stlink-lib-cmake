@@ -30,6 +30,7 @@ add_cflag_if_supported("-Wmaybe-uninitialized")
 add_cflag_if_supported("-Wmissing-variable-declarations")
 add_cflag_if_supported("-Wshorten-64-to-32")
 add_cflag_if_supported("-Wimplicit-function-declaration")
+add_cflag_if_supported("-Wno-unused-but-set-variable")
 
 ##
 # On OpenBSD the system headers suck so we need to disable redundant declaration check

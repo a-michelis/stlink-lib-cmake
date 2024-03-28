@@ -6,11 +6,11 @@
 
 #include <stdint.h>
 
-#include <stlink.h>
-#include "calculate.h"
+#include "stlink/stlink.h"
+#include "stlink/calculate.h"
 
-#include "common_flash.h"
-#include "read_write.h"
+#include "stlink/common_flash.h"
+#include "stlink/read_write.h"
 
 uint32_t calculate_F4_sectornum(uint32_t flashaddr) {
   uint32_t offset = 0;

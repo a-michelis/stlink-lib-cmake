@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "helper.h"
+#include "stlink/helper.h"
 
 uint32_t time_ms() {
     struct timeval tv;

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <memory.h>
 
-#include "lib_md5.h"
+#include "stlink/lib_md5.h"
 
 /* INTERNAL FUNCTIONS */
 

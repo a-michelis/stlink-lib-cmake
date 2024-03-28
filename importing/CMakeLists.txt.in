@@ -1,0 +1,21 @@
+project(stlink)
+
+add_library(_libusb IMPORTED @GEN_LIB_TYPE@)
+set_target_properties(_libusb PROPERTIES
+        IMPORTED_LOCATION "${$}{PROJECT_SOURCE_DIR}/@GEN_LIBUSB_LOC@"
+        IMPORTED_IMPLIB "${$}{PROJECT_SOURCE_DIR}/@GEN_LIBUSB_IMP@"
+        INTERFACE_INCLUDE_DIRECTORIES "${$}{PROJECT_SOURCE_DIR}/include/libusb-1.0"
+)
+
+add_library(_stlink IMPORTED SHARED)
+set_target_properties(_stlink PROPERTIES
+        IMPORTED_LOCATION "${$}{PROJECT_SOURCE_DIR}/@GEN_STLINK_LOC@"
+        IMPORTED_IMPLIB "${$}{PROJECT_SOURCE_DIR}/@GEN_STLINK_IMP@"
+        INTERFACE_INCLUDE_DIRECTORIES "${$}{PROJECT_SOURCE_DIR}/include/stlink"
+        INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${$}{PROJECT_SOURCE_DIR}/include/stlink_dependencies"
+)
+
+add_library(stlink INTERFACE)
+target_link_libraries(stlink INTERFACE _libusb _stlink)
+
+target_compile_definitions(stlink INTERFACE @GEN_COMPILE_DEFS@)

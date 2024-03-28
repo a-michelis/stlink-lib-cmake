@@ -7,11 +7,11 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include <stlink.h>
-#include "md5.h"
+#include "stlink/stlink.h"
+#include "stlink/md5.h"
 
-#include "map_file.h"
-#include "lib_md5.h"
+#include "stlink/map_file.h"
+#include "stlink/lib_md5.h"
 
 void md5_calculate(mapped_file_t *mf) {
   // calculate md5 checksum of given binary file

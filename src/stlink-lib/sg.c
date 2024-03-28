@@ -91,13 +91,13 @@
 #include <assert.h>
 // #include <sys/types.h> // TODO: Check use
 
-#include "sg.h"
+#include "stlink/sg.h"
 
-#include "commands.h"
-#include "logging.h"
-#include "read_write.h"
-#include "register.h"
-#include "usb.h"
+#include "stlink/commands.h"
+#include "stlink/logging.h"
+#include "stlink/read_write.h"
+#include "stlink/register.h"
+#include "stlink/usb.h"
 // #include <stlink.h>    // TODO: Check use
 
 #define STLINK_OK    0x80

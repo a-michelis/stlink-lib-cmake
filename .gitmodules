@@ -1,0 +1,4 @@
+[submodule "ext/libusb"]
+	path = ext/libusb
+	url = https://github.com/libusb/libusb-cmake
+	branch = v1.0.27

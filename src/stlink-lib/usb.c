@@ -22,13 +22,13 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-#include <stlink.h>
-#include "usb.h"
+#include "stlink/stlink.h"
+#include "stlink/usb.h"
 
-#include "commands.h"
-#include "logging.h"
-#include "read_write.h"
-#include "register.h"
+#include "stlink/commands.h"
+#include "stlink/logging.h"
+#include "stlink/read_write.h"
+#include "stlink/register.h"
 
 static inline uint32_t le_to_h_u32(const uint8_t* buf) {
     return ((uint32_t)((uint32_t)buf[0] | (uint32_t)buf[1] << 8 | (uint32_t)buf[2] << 16 | (uint32_t)buf[3] << 24));

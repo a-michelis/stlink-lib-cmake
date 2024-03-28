@@ -9,15 +9,15 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <stm32.h>
-#include <stlink.h>
-#include "flash_loader.h"
+#include "stlink/stm32.h"
+#include "stlink/stlink.h"
+#include "stlink/flash_loader.h"
 
-#include "common_flash.h"
-#include "helper.h"
-#include "logging.h"
-#include "read_write.h"
-#include "register.h"
+#include "stlink/common_flash.h"
+#include "stlink/helper.h"
+#include "stlink/logging.h"
+#include "stlink/read_write.h"
+#include "stlink/register.h"
 
 #define FLASH_REGS_BANK2_OFS      0x40
 #define FLASH_BANK2_START_ADDR    0x08080000

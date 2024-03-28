@@ -12,7 +12,7 @@
 #include <stdarg.h>
 #include <time.h>
 
-#include "logging.h"
+#include "stlink/logging.h"
 
 static int32_t max_level = UDEBUG;
 

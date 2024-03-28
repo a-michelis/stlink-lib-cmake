@@ -16,18 +16,18 @@
 // #include <sys/stat.h>  // TODO: Check use
 // #include <sys/types.h> // TODO: Check use
 
-#include <stlink.h>
+#include "stlink/stlink.h"
 
-#include "calculate.h"
-#include "chipid.h"
-#include "common_flash.h"
-#include "helper.h"
-#include "logging.h"
-#include "map_file.h"
-#include "md5.h"
-#include "read_write.h"
-#include "register.h"
-#include "usb.h"
+#include "stlink/calculate.h"
+#include "stlink/chipid.h"
+#include "stlink/common_flash.h"
+#include "stlink/helper.h"
+#include "stlink/logging.h"
+#include "stlink/map_file.h"
+#include "stlink/md5.h"
+#include "stlink/read_write.h"
+#include "stlink/register.h"
+#include "stlink/usb.h"
 
 #ifndef O_BINARY
 #define O_BINARY 0

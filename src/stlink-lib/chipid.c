@@ -9,11 +9,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <stm32.h>
-#include <stlink.h>
-#include "chipid.h"
+#include "stlink/stm32.h"
+#include "stlink/stlink.h"
+#include "stlink/chipid.h"
 
-#include "logging.h"
+#include "stlink/logging.h"
 
 // #include <ctype.h> // TODO: Check use
 // #include <errno.h> // TODO: Check use

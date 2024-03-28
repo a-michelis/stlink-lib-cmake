@@ -12,10 +12,10 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-#include <stlink.h>
-#include "map_file.h"
+#include "stlink/stlink.h"
+#include "stlink/map_file.h"
 
-#include "read_write.h"
+#include "stlink/read_write.h"
 
 #ifndef O_BINARY
 #define O_BINARY 0

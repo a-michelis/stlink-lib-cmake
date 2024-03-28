@@ -8,15 +8,15 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <stlink.h>
-#include "option_bytes.h"
+#include "stlink/stlink.h"
+#include "stlink/option_bytes.h"
 
-#include "common_flash.h"
-#include "flash_loader.h"
-#include "logging.h"
-#include "map_file.h"
-#include "md5.h"
-#include "read_write.h"
+#include "stlink/common_flash.h"
+#include "stlink/flash_loader.h"
+#include "stlink/logging.h"
+#include "stlink/map_file.h"
+#include "stlink/md5.h"
+#include "stlink/read_write.h"
 
 /**
  * Read option control register C0
