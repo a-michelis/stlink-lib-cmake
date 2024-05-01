@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeSharedSettings">
     <configurations>
-      <configuration PROFILE_NAME="[MSVC] Shared" ENABLED="true" GENERATION_DIR="build/msvc/shared" CONFIG_NAME="Release" TOOLCHAIN_NAME="Visual Studio (x64)" GENERATION_OPTIONS="-G &quot;Visual Studio 17 2022&quot; -DBUILD_SHARED_LIBS=ON --install-prefix &quot;$CMakeProjectDir$\dist\msvc\shared&quot;" />
-      <configuration PROFILE_NAME="[MSVC] Static" ENABLED="true" GENERATION_DIR="build/msvc/static" CONFIG_NAME="Release" TOOLCHAIN_NAME="Visual Studio (x64)" GENERATION_OPTIONS="-G &quot;Visual Studio 17 2022&quot; -DBUILD_SHARED_LIBS=OFF --install-prefix &quot;$CMakeProjectDir$\dist\msvc\static&quot;" />
+      <configuration PROFILE_NAME="[MSVC] Shared" ENABLED="true" GENERATION_DIR="build/msvc/shared" CONFIG_NAME="Release" TOOLCHAIN_NAME="Visual Studio" GENERATION_OPTIONS="-G &quot;Visual Studio 17 2022&quot; -DBUILD_SHARED_LIBS=ON --install-prefix &quot;$CMakeProjectDir$\dist\msvc\shared&quot;" />
+      <configuration PROFILE_NAME="[MSVC] Static" ENABLED="true" GENERATION_DIR="build/msvc/static" CONFIG_NAME="Release" TOOLCHAIN_NAME="Visual Studio" GENERATION_OPTIONS="-G &quot;Visual Studio 17 2022&quot; -DBUILD_SHARED_LIBS=OFF --install-prefix &quot;$CMakeProjectDir$\dist\msvc\static&quot;" />
       <configuration PROFILE_NAME="[WSL] Shared" ENABLED="true" GENERATION_DIR="build/wsl/shared" CONFIG_NAME="Release" TOOLCHAIN_NAME="WSL" GENERATION_OPTIONS="-G &quot;Unix Makefiles&quot; -DBUILD_SHARED_LIBS=ON --install-prefix &quot;$CMakeProjectDir$/dist/wsl/shared&quot;" />
       <configuration PROFILE_NAME="[WSL] Static" ENABLED="true" GENERATION_DIR="build/wsl/static" CONFIG_NAME="Release" TOOLCHAIN_NAME="WSL" GENERATION_OPTIONS="-G &quot;Unix Makefiles&quot; -DBUILD_SHARED_LIBS=OFF --install-prefix &quot;$CMakeProjectDir$/dist/wsl/static&quot;" />
     </configurations>

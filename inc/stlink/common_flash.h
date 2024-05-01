@@ -10,6 +10,10 @@
 #define BANK_1 0
 #define BANK_2 1
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 uint32_t get_stm32l0_flash_base(stlink_t *);
 uint32_t read_flash_cr(stlink_t *, uint32_t);
 void lock_flash(stlink_t *);
@@ -50,4 +54,7 @@ int32_t stlink_write_flash(stlink_t *sl, stm32_addr_t addr, uint8_t *base, uint3
 int32_t stlink_write_otp(stlink_t *sl, stm32_addr_t addr, uint8_t *base, uint32_t len);
 void stlink_fwrite_finalize(stlink_t *, stm32_addr_t);
 
+#ifdef __cplusplus
+}
+#endif
 #endif // COMMON_FLASH_H

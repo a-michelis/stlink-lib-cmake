@@ -11,11 +11,7 @@
 #define O_BINARY 0
 #endif // O_BINARY
 
-#ifdef STLINK_HAVE_SYS_MMAN_H
-#include <sys/mman.h>
-#else
 #include "mmap.h"
-#endif // STLINK_HAVE_SYS_MMAN_H
 
 /* Memory mapped file */
 typedef struct mapped_file {

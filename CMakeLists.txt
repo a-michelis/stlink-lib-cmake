@@ -107,8 +107,9 @@ endif()
 # Dependencies
 ###
 if (NOT WIN32)
-    set(LIBUSB_ENABLE_UDEV OFF)    
+    set(LIBUSB_ENABLE_UDEV OFF)
 endif ()
+set(LIBUSB_BUILD_SHARED_LIBS OFF)
 add_subdirectory(${PROJECT_SOURCE_DIR}/ext/libusb)
 
 ## Check for system-specific additional header files and libraries
@@ -161,7 +162,6 @@ if (MSVC)
     list(APPEND GEN_COMPILE_DEFS -DHAVE_STRING_H -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS /wd4710)
 #    set(GEN_COMPILE_DEFS "${GEN_COMPILE_DEFS} -DHAVE_STRING_H -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS /wd4710")
 endif()
-string (REPLACE ";" " " GEN_COMPILE_DEFS "${GEN_COMPILE_DEFS}")
 
 ###
 # Main build process
@@ -236,17 +236,17 @@ if (WIN32)
         install(FILES ${STLINK_GETOPT_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/stlink_dependencies)
     endif()
 
-    if (NOT STLINK_HAVE_SYS_MMAN_H)
-        target_include_directories(stlink SYSTEM BEFORE PUBLIC ${PROJECT_SOURCE_DIR}/inc/mmap)
-        file(GLOB STLINK_MMAN_HEADERS "${CMAKE_SOURCE_DIR}/inc/mmap/*.h")
-        install(FILES ${STLINK_MMAN_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/stlink_dependencies)
-    endif()
-
     if (NOT STLINK_HAVE_SYS_TIME_H)
         target_include_directories(stlink SYSTEM BEFORE PUBLIC ${PROJECT_SOURCE_DIR}/inc/sys_time)
         file(GLOB STLINK_SYS_TIME_HEADERS "${CMAKE_SOURCE_DIR}/inc/sys_time/*.h")
         install(FILES ${STLINK_SYS_TIME_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/stlink_dependencies)
     endif()
+endif()
+
+if (NOT STLINK_HAVE_SYS_MMAN_H)
+    target_include_directories(stlink SYSTEM BEFORE PUBLIC ${PROJECT_SOURCE_DIR}/inc/mmap)
+    file(GLOB STLINK_MMAN_HEADERS "${CMAKE_SOURCE_DIR}/inc/mmap/*.h")
+    install(FILES ${STLINK_MMAN_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/stlink_dependencies)
 endif()
 
 set_target_properties(stlink PROPERTIES
@@ -271,21 +271,21 @@ install(TARGETS stlink
 if (BUILD_SHARED_LIBS)
     set(GEN_LIB_TYPE "SHARED")
     if (WIN32)
-        set(GEN_LIBUSB_LOC "bin/libusb-1.0.dll")
-        set(GEN_LIBUSB_IMP "lib/usb-1.0.lib")
+        set(GEN_LIBUSB_LOC "lib/libusb-1.0.lib")
+        set(GEN_LIBUSB_IMP "lib/libusb-1.0.lib")
         set(GEN_STLINK_LOC "bin/stlink.dll")
         set(GEN_STLINK_IMP "lib/stlink.lib")
     else ()
-        set(GEN_LIBUSB_LOC "lib/libusb-1.0.so")
-        set(GEN_LIBUSB_IMP "lib/libusb-1.0.so")
+        set(GEN_LIBUSB_LOC "lib/libusb-1.0.a")
+        set(GEN_LIBUSB_IMP "lib/libusb-1.0.a")
         set(GEN_STLINK_LOC "lib/libstlink.so.1.8.0")
         set(GEN_STLINK_IMP "lib/libstlink.so.1.8.0")
     endif ()
 else ()
     set(GEN_LIB_TYPE "STATIC")
     if (WIN32)
-        set(GEN_LIBUSB_LOC "lib/usb-1.0.lib")
-        set(GEN_LIBUSB_IMP "lib/usb-1.0.lib")
+        set(GEN_LIBUSB_LOC "lib/libusb-1.0.lib")
+        set(GEN_LIBUSB_IMP "lib/libusb-1.0.lib")
         set(GEN_STLINK_LOC "lib/stlink.lib")
         set(GEN_STLINK_IMP "lib/stlink.lib")
     else ()
@@ -296,6 +296,7 @@ else ()
     endif ()
 endif()
 
+string (REPLACE ";" " " GEN_COMPILE_DEFS "${GEN_COMPILE_DEFS}")
 set($ $)
 configure_file(
         "${PROJECT_SOURCE_DIR}/importing/CMakeLists.txt.in"
@@ -307,3 +308,6 @@ install(FILES
         DESTINATION
         ${CMAKE_INSTALL_PREFIX}
 )
+
+file(GLOB CHIP_FILES RELATIVE ${PROJECT_SOURCE_DIR} "config/chips/*.chip")
+install(FILES ${CHIP_FILES} DESTINATION ${CMAKE_INSTALL_PREFIX}/chips)

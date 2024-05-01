@@ -1,6 +1,6 @@
 project(stlink)
 
-add_library(_libusb IMPORTED @GEN_LIB_TYPE@)
+add_library(_libusb IMPORTED STATIC)
 set_target_properties(_libusb PROPERTIES
         IMPORTED_LOCATION "${$}{PROJECT_SOURCE_DIR}/@GEN_LIBUSB_LOC@"
         IMPORTED_IMPLIB "${$}{PROJECT_SOURCE_DIR}/@GEN_LIBUSB_IMP@"
@@ -19,3 +19,6 @@ add_library(stlink INTERFACE)
 target_link_libraries(stlink INTERFACE _libusb _stlink)
 
 target_compile_definitions(stlink INTERFACE @GEN_COMPILE_DEFS@)
+
+file(GLOB CHIP_FILES "${$}${PROJECT_SOURCE_DIR}/chips/*.chip")
+install(FILES ${$}{CHIP_FILES} DESTINATION ${$}{CMAKE_INSTALL_BINDIR}/chips)
