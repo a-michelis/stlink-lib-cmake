@@ -20,5 +20,5 @@ target_link_libraries(stlink INTERFACE _libusb _stlink)
 
 target_compile_definitions(stlink INTERFACE @GEN_COMPILE_DEFS@)
 
-file(GLOB CHIP_FILES "${$}${PROJECT_SOURCE_DIR}/chips/*.chip")
+file(GLOB CHIP_FILES "${$}{PROJECT_SOURCE_DIR}/chips/*.chip")
 install(FILES ${$}{CHIP_FILES} DESTINATION ${$}{CMAKE_INSTALL_BINDIR}/chips)
