@@ -298,6 +298,16 @@ endif()
 
 string (REPLACE ";" " " GEN_COMPILE_DEFS "${GEN_COMPILE_DEFS}")
 set($ $)
+if (MSVC)
+    set(STLINK_ATTATCH_LIBRARY_TO_EXEC_PATH
+            "add_custom_command(TARGET \${proj}\n\
+            COMMAND \${CMAKE_COMMAND} -E make_directory \"\$<TARGET_FILE_DIR:\${proj}>\"\n\
+            COMMAND \${CMAKE_COMMAND} -E copy_directory \"\${STLINK_SOURCE_DIR}/bin\" \"\$<TARGET_FILE_DIR:\${proj}>\"\n\
+            COMMENT \"Copying STLink library to output directory of \${proj}\"\n\
+    )")
+else ()
+    set(STLINK_ATTATCH_LIBRARY_TO_EXEC_PATH "")
+endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/importing/CMakeLists.txt.in"
         "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/CMakeLists.txt"

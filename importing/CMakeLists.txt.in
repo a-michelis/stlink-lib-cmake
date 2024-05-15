@@ -1,4 +1,5 @@
 project(stlink)
+set(STLINK_SOURCE_DIR ${PROJECT_SOURCE_DIR} CACHE INTERNAL "STLINK_SOURCE_DIR")
 
 add_library(_libusb IMPORTED STATIC)
 set_target_properties(_libusb PROPERTIES
@@ -22,3 +23,16 @@ target_compile_definitions(stlink INTERFACE @GEN_COMPILE_DEFS@)
 
 file(GLOB CHIP_FILES "${$}{PROJECT_SOURCE_DIR}/chips/*.chip")
 install(FILES ${$}{CHIP_FILES} DESTINATION ${$}{CMAKE_INSTALL_BINDIR}/chips)
+
+function(target_attach_stlink_chipdir proj)
+    add_custom_command(
+            TARGET ${$}{proj}
+            COMMAND ${$}{CMAKE_COMMAND} -E make_directory "${$}<TARGET_FILE_DIR:${proj}>/chips"
+            COMMAND ${$}{CMAKE_COMMAND} -E copy_directory "${$}{STLINK_SOURCE_DIR}/chips" "${$}<TARGET_FILE_DIR:${$}{proj}>/chips"
+            COMMENT "Copying chips to output directory of ${$}{proj}"
+    )
+endfunction()
+
+function(target_attach_stlink_library proj)
+    ${STLINK_ATTATCH_LIBRARY_TO_EXEC_PATH}
+endfunction()
